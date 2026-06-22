@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160a4ddfa66ac48e6ac5ab318c2595b7, type: 3}
   m_Name: Phase2_Define
   m_EditorClassIdentifier: Assembly-CSharp::PhaseData
-  phaseName: 
-  description: 
-  phaseOrder: 0
+  phaseName: Define
+  description: 'Synthesize what you learned into a clear problem statement. A good
+    definition frames the challenge around the user''s needs and gives the whole
+    team a
+
+    shared focus before any solutions are proposed.'
+  phaseOrder: 2

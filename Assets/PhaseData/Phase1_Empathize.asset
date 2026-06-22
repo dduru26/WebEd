@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160a4ddfa66ac48e6ac5ab318c2595b7, type: 3}
   m_Name: Phase1_Empathize
   m_EditorClassIdentifier: Assembly-CSharp::PhaseData
-  phaseName: 
-  description: 
-  phaseOrder: 0
+  phaseName: Empathize
+  description: Understand the people you are designing for. Observe, interview, and
+    immerse yourself in their experiences to uncover real needs rather than assumed
+    ones. Empathy is the foundation of human-centered design.
+  phaseOrder: 1

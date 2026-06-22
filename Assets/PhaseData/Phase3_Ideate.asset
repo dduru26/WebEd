@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160a4ddfa66ac48e6ac5ab318c2595b7, type: 3}
   m_Name: Phase3_Ideate
   m_EditorClassIdentifier: Assembly-CSharp::PhaseData
-  phaseName: 
-  description: 
-  phaseOrder: 0
+  phaseName: Ideate
+  description: 'Generate a wide range of possible solutions without judging them
+    yet. Quantity over quality at this stage. Sketch, brainstorm, and combine ideas
+    to explore
+
+    the full solution space.'
+  phaseOrder: 3

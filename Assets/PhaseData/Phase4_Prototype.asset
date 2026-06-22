@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160a4ddfa66ac48e6ac5ab318c2595b7, type: 3}
   m_Name: Phase4_Prototype
   m_EditorClassIdentifier: Assembly-CSharp::PhaseData
-  phaseName: 
-  description: 
-  phaseOrder: 0
+  phaseName: Prototype
+  description: Turn the most promising ideas into quick, low-cost models. A prototype
+    can be a sketch, a paper mockup, or a rough digital build. Its purpose is to
+    make ideas tangible enough to test.
+  phaseOrder: 4
