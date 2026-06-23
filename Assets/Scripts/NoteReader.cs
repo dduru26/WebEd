@@ -1,0 +1,22 @@
+using UnityEngine;
+using TMPro;
+
+// Shows a single note's text in an enlarged overlay.
+// Put this on the Canvas (or any object) and wire its two slots.
+public class NoteReader : MonoBehaviour
+{
+    [SerializeField] private GameObject panelRoot;   // the NotePanel (hidden by default)
+    [SerializeField] private TMP_Text noteText;      // the big text inside it
+
+    public void Show(string text)
+    {
+        if (noteText != null) noteText.text = text;
+        if (panelRoot != null) panelRoot.SetActive(true);
+    }
+
+    // Wire this to the NotePanel's close button On Click ().
+    public void Hide()
+    {
+        if (panelRoot != null) panelRoot.SetActive(false);
+    }
+}
