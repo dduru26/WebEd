@@ -1,8 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-// Attach to your Canvas (or an empty UI manager object).
-// Controls the info panel that appears when a phase object is clicked.
+
 public class PanelController : MonoBehaviour
 {
     [Header("Panel UI")]

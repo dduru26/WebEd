@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;     // NEW Input System
 using UnityEngine.EventSystems;    // to detect when the pointer is over UI
 
-// Attach to the fixed scene camera.
+
 // Raycasts to a tagged desk object on click and opens its info panel; also tints on hover.
 public class PhaseInteractor : MonoBehaviour
 {

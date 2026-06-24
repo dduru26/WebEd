@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Attach to an empty GameObject. Tracks which phases the user has opened.
-// When all 5 have been viewed, fires confetti and shows a win message.
-// Extra feature: progress + particle system win-state.
+
 public class ProgressTracker : MonoBehaviour
 {
     [SerializeField] private ParticleSystem confetti;   // from Kenney Particle Pack

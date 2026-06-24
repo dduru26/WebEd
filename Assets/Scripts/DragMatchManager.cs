@@ -8,8 +8,8 @@ using UnityEngine.EventSystems;   // to detect when the pointer is over UI
 public class DragMatchManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Camera cam;                // your fixed scene camera
-    [SerializeField] private NoteReader noteReader;     // overlay that shows a note's text enlarged
+    [SerializeField] private Camera cam;                
+    [SerializeField] private NoteReader noteReader;     
 
     [Header("Settings")]
     [SerializeField] private float maxDistance = 50f;
@@ -18,7 +18,7 @@ public class DragMatchManager : MonoBehaviour
     [SerializeField] private float tapThreshold = 10f;  // pixels of movement below which a press counts as a tap
 
     [Header("Win")]
-    [SerializeField] private ParticleSystem confetti;   // drag your existing Confetti object here
+    [SerializeField] private ParticleSystem confetti;   
     [SerializeField] private GameObject winText;        // optional "all matched" message, hidden by default
     [SerializeField] private int totalNotes = 5;
 
@@ -53,7 +53,7 @@ public class DragMatchManager : MonoBehaviour
                 {
                     tappedNote = note;
                     pressPos = pointerPos;
-                    if (!note.placed)                   // only unplaced notes can be dragged
+                    if (!note.placed)                   
                     {
                         heldNote = note;
                         dragPlane = new Plane(Vector3.up, note.transform.position);

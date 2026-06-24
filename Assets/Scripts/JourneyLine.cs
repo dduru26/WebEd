@@ -1,8 +1,6 @@
 using UnityEngine;
 
-// Attach to an empty GameObject that has a LineRenderer component.
-// Draws a connecting line through all 5 phase objects to show the
-// "design journey" sequence. Satisfies the Line Renderer requirement.
+
 [RequireComponent(typeof(LineRenderer))]
 public class JourneyLine : MonoBehaviour
 {

@@ -14,7 +14,6 @@ public class NoteReader : MonoBehaviour
         if (panelRoot != null) panelRoot.SetActive(true);
     }
 
-    // Wire this to the NotePanel's close button On Click ().
     public void Hide()
     {
         if (panelRoot != null) panelRoot.SetActive(false);
