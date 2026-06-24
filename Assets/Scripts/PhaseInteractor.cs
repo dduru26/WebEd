@@ -1,28 +1,20 @@
 using UnityEngine;
-using UnityEngine.InputSystem;   // NEW Input System
+using UnityEngine.InputSystem;     // NEW Input System
+using UnityEngine.EventSystems;    // to detect when the pointer is over UI
 
-// Attach to the player's CAMERA (the FPS prefab's camera), or to a fixed camera
-// if you remove movement for mobile.
-//
-// Uses Pointer.current instead of Mouse.current so the SAME build responds to
-// both a desktop mouse click (WebGL) and a finger tap (Android). Pointer is the
-// base class for Mouse, Touchscreen and Pen.
-//
-// Handles BOTH required mechanics:
-//   - Raycasting (detects which object you clicked / tapped)
-//   - Hover highlight (extra feature: tints the object under the cursor on desktop)
+// Attach to the fixed scene camera.
+// Raycasts to a tagged desk object on click and opens its info panel; also tints on hover.
 public class PhaseInteractor : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Camera cam;               // drag the camera here
-    [SerializeField] private PanelController panel;     // drag the Canvas panel controller here
+    [SerializeField] private Camera cam;
+    [SerializeField] private PanelController panel;
 
     [Header("Settings")]
-    [SerializeField] private float maxDistance = 6f;
+    [SerializeField] private float maxDistance = 50f;
     [SerializeField] private string phaseTag = "DesignPhase";
     [SerializeField] private Color highlightColor = new Color(1f, 0.85f, 0.3f);
 
-    // hover state
     private Renderer hoveredRenderer;
     private Color originalColor;
 
@@ -35,11 +27,15 @@ public class PhaseInteractor : MonoBehaviour
     {
         if (cam == null || Pointer.current == null) return;
 
+        // If the pointer is over a UI element (a panel or a Close button),
+        // don't let the click fall through into the 3D scene.
+        bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+
         Vector2 pointerPos = Pointer.current.position.ReadValue();
         Ray ray = cam.ScreenPointToRay(pointerPos);
 
-        // --- HOVER HIGHLIGHT (desktop nicety; on touch it just tints the last tap) ---
-        if (Physics.Raycast(ray, out RaycastHit hover, maxDistance) &&
+        // --- HOVER HIGHLIGHT ---
+        if (!overUI && Physics.Raycast(ray, out RaycastHit hover, maxDistance) &&
             hover.collider.CompareTag(phaseTag))
         {
             SetHover(hover.collider.GetComponent<Renderer>());
@@ -49,9 +45,8 @@ public class PhaseInteractor : MonoBehaviour
             ClearHover();
         }
 
-        // --- CLICK / TAP TO OPEN PANEL ---
-        // Pointer.press covers mouse left-button AND a finger touch.
-        if (Pointer.current.press.wasPressedThisFrame)
+        // --- CLICK TO OPEN PANEL ---
+        if (!overUI && Pointer.current.press.wasPressedThisFrame)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, maxDistance) &&
                 hit.collider.CompareTag(phaseTag))
@@ -65,7 +60,7 @@ public class PhaseInteractor : MonoBehaviour
 
     private void SetHover(Renderer r)
     {
-        if (r == hoveredRenderer) return;   // already highlighting this one
+        if (r == hoveredRenderer) return;
         ClearHover();
         if (r == null) return;
 

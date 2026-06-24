@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;   // NEW Input System
 using TMPro;
+using UnityEngine.EventSystems;   // to detect when the pointer is over UI
 
-// Sticky-note feature: pick up, drag, drop/match, plus tap-to-read.
+// Sticky-note feature: pick up, drag, drop/match, tap-to-read, and the win reaction.
 // A short press that barely moves = read the note. A press-and-drag = match it.
 public class DragMatchManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class DragMatchManager : MonoBehaviour
     [SerializeField] private float liftHeight = 0.15f;  // how high a note floats while dragged
     [SerializeField] private float snapHeight = 0f;     // how high a matched note rests above its object
     [SerializeField] private float tapThreshold = 10f;  // pixels of movement below which a press counts as a tap
+
+    [Header("Win")]
+    [SerializeField] private ParticleSystem confetti;   // drag your existing Confetti object here
+    [SerializeField] private GameObject winText;        // optional "all matched" message, hidden by default
+    [SerializeField] private int totalNotes = 5;
 
     private Note heldNote;       // unplaced note being dragged
     private Note tappedNote;     // note under the press point (placed or not) for tap-to-read
@@ -31,11 +37,14 @@ public class DragMatchManager : MonoBehaviour
     {
         if (cam == null || Pointer.current == null) return;
 
+        // If the pointer is over a UI element, don't start a world interaction.
+        bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+
         Vector2 pointerPos = Pointer.current.position.ReadValue();
         Ray ray = cam.ScreenPointToRay(pointerPos);
 
         // --- PRESS: identify the note under the pointer ---
-        if (Pointer.current.press.wasPressedThisFrame)
+        if (!overUI && Pointer.current.press.wasPressedThisFrame)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
             {
@@ -98,12 +107,20 @@ public class DragMatchManager : MonoBehaviour
             heldNote.placed = true;
             heldNote.currentTarget = null;
             correctCount++;
-            Debug.Log("Correct! " + correctCount + "/5");
+            Debug.Log("Correct! " + correctCount + "/" + totalNotes);
+
+            if (correctCount >= totalNotes) Win();
         }
         else
         {
             heldNote.transform.position = heldNote.homePosition;
         }
+    }
+
+    private void Win()
+    {
+        if (confetti != null) confetti.Play();
+        if (winText != null) winText.SetActive(true);
     }
 
     private string GetNoteText(Note n)
