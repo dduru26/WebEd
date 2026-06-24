@@ -91,9 +91,9 @@ I implemented several features beyond the module scope:
 
 ## Build Information
 
-**WebGL deployment link:** `[ paste your itch.io / hosted WebGL URL here ]`
+**WebGL deployment link:** https://donaldduru.itch.io/webed
 
-**Android build (APK):** `[ paste your APK download link here ]`
+**Android build (APK):** 
 
 ### Instructions for running the project
 
