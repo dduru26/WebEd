@@ -26,7 +26,7 @@ public class PanelController : MonoBehaviour
         if (tracker != null) tracker.MarkViewed(data.phaseOrder);
     }
 
-    // Wire this to the Close button's OnClick event.
+    
     public void Hide()
     {
         if (panelRoot != null) panelRoot.SetActive(false);

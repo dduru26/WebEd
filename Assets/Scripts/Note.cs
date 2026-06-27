@@ -16,8 +16,7 @@ public class Note : MonoBehaviour
         homePosition = transform.position;
     }
 
-    // GetComponentInParent (not GetComponent) so it still finds the script when the
-    // collider is on a child mesh of the model
+    
     void OnTriggerEnter(Collider other)
     {
         var target = other.GetComponentInParent<DesignPhaseObject>();

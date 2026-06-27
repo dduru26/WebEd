@@ -5,8 +5,8 @@ using TMPro;
 // Put this on the Canvas (or any object) and wire its two slots.
 public class NoteReader : MonoBehaviour
 {
-    [SerializeField] private GameObject panelRoot;   // the NotePanel (hidden by default)
-    [SerializeField] private TMP_Text noteText;      // the big text inside it
+    [SerializeField] private GameObject panelRoot; 
+    [SerializeField] private TMP_Text noteText;     
 
     public void Show(string text)
     {
