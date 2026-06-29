@@ -45,7 +45,7 @@ public class PhaseInteractor : MonoBehaviour
             ClearHover();
         }
 
-       
+        // --- CLICK TO OPEN PANEL ---
         if (!overUI && Pointer.current.press.wasPressedThisFrame)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, maxDistance) &&

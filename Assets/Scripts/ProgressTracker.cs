@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProgressTracker : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem confetti;   
+    [SerializeField] private ParticleSystem confetti;   // from Kenney Particle Pack
     [SerializeField] private GameObject winText;        // "You completed the design journey!"
     [SerializeField] private int totalPhases = 5;
 
